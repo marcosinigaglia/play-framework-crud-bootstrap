@@ -1,0 +1,36 @@
+#{extends 'CRUD/layout.html' /}
+#{set title:messages.get('crud.show.title', type.modelName) /}
+
+<div class="${type.name}">
+
+	<div id="modal-delete" class="modal fade">
+	    <div class="modal-header">
+	      <a href="#" class="close" data-dismiss="modal">×</a>
+	      <h3>Confermi ?</h3>
+	    </div>
+	    <div class="modal-body">
+	      <p>La cancellazione non sarà reversibile.</p>
+	      <p>Vuoi procedere?</p>
+	    </div>
+	    <div class="modal-footer">
+	      	#{form @delete(object._key())}
+    			<input class="btn btn-danger" type="submit" value="&{'crud.delete', type.modelName}" />
+	      		<a href="javascript:$('#modal-delete').modal('hide')" class="btn">Annulla</a>
+			#{/form}
+	    </div>
+	</div>
+
+    #{form action:@save(object._key()), enctype:'multipart/form-data', class:'form-horizontal'}
+    	<fieldset>
+    		<legend>&{'crud.show.title', type.modelName} <a href="#" class="btn btn-danger delete" style="float:right;" type="submit">&{'crud.delete', type.modelName}</a></legend>
+        	#{crud.form /}
+	        <div class="form-actions">
+	            <button type="submit" class="btn btn-primary" name="_save">&{'crud.save', type.modelName}</button>
+	            <button type="submit" class="btn" name="_saveAndContinue">&{'crud.saveAndContinue', type.modelName}</button>
+	            <a href="@{list()}" class="btn">&{'crud.cancel', type.modelName}</a>	            
+	        </div>
+        </fieldset>
+    #{/form}
+    
+
+</div>

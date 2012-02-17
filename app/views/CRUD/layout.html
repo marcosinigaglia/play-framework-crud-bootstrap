@@ -1,0 +1,13 @@
+#{extends 'main.html' /}
+
+#{if request.actionMethod != 'index'}
+            
+	#{crud.navigation /}
+
+#{/if}
+
+
+        <div id="crudContent">
+#{doLayout /}
+        </div>
+

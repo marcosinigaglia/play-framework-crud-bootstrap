@@ -1,0 +1,19 @@
+#{extends 'CRUD/layout.html' /}
+#{set title:messages.get('crud.blank.title', type.modelName) /}
+
+<div class="${type.name}">
+    
+    #{form action:@create(), enctype:'multipart/form-data', class:'form-horizontal'}
+    	<fieldset>
+    		<legend>&{'crud.blank.title', type.modelName}</legend>
+	        #{crud.form /}
+	        <div class="well form-actions">
+	            <button type="submit" class="btn btn-primary" name="_save">&{'crud.save', type.modelName}</button>
+	            <button type="submit" class="btn" name="_saveAndContinue">&{'crud.saveAndContinue', type.modelName}</button>
+	            <button type="submit" class="btn" name="_saveAndAddAnother" >&{'crud.saveAndAddAnother', type.modelName}</button>
+	            <a href="@{list()}" class="btn">&{'crud.cancel', type.modelName}</a>
+	        </div>
+        </fieldset>
+    #{/form}
+
+</div>
