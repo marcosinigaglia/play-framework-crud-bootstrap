@@ -1,0 +1,18 @@
+#{field 'object.' + _name}
+<div class="control-group #{ifError field.name}error#{/ifError}">
+
+	<label class="control-label" for="${field.id}">&{_name}</label>    
+
+	<div class="controls">
+    	<input id="${field.id}" class="${field.errorClass}" type="file" name="${field.name}" />
+    	#{if _value && _value.exists() && _id}
+    		<br/><br/>
+	        <a class="btn" target="_blank" href="@{attachment(_id, _name)}">&{'crud.download.file'} (${_value.length().formatSize()})</a>
+	        <span  style="margin-left:20px;"><input type="checkbox" name="${field.name}_delete_" value="true" /> &{'crud.delete.file'}</span>
+	    #{/if}
+    </div>
+    #{ifError field.name}
+        <span class="help-inline">${field.error.raw()}</span>
+    #{/ifError}    
+</div>
+#{/field}

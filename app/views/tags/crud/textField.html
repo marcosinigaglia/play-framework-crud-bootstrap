@@ -1,0 +1,13 @@
+#{field 'object.' + _name}
+<div class="control-group #{ifError field.name}error#{/ifError}">
+            
+    <label class="control-label" for="${field.id}">&{_name}</label>
+    
+    <div class="controls">    
+    	<input id="${field.id}" class="${field.errorClass} span6" type="text" name="${field.name}" value="${params[field.name]?.escape()?.raw() ?: field.error?.message == 'validation.required' ? '' : _value?.escape()?.raw()}" size="50" />
+    </div>
+    #{ifError field.name}
+        <span class="help-inline">${field.error.raw()}</span>
+    #{/ifError}
+</div>
+#{/field}

@@ -1,0 +1,9 @@
+#{form action:@list().remove('page'), method:'GET', class:'well form-search'}
+    #{if _fields}
+        <input type="hidden" class="input-medium search-query" name="searchFields" value="${_fields.toString().substring(1, _fields.toString().length()-1).replace(',', '')}" >
+    #{/if}
+    <input type="text" class="input-medium search-query span3" name="search" value="${params.search?.escape()?.raw()}"> <button class="btn" type="submit">&{'crud.search'} <i class="icon-search icon-black"></i></button>
+    #{if _caller.params.search}
+        (<a href="@{list()}">&{'crud.list.totalSize', _caller.totalCount}</a>)
+    #{/if}
+#{/form}
